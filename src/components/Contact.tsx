@@ -1,4 +1,5 @@
-import { Mail, Linkedin, Github, Calendar, MapPin } from 'lucide-react';
+import { Mail, Calendar, MapPin } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export function Contact() {
   return (
@@ -24,7 +25,7 @@ export function Contact() {
 
           <a href="https://linkedin.com/in/matias-carvacho" target="_blank" rel="noreferrer" className="bento-card" style={{ display: 'flex', alignItems: 'center', gap: '1rem', textDecoration: 'none' }}>
             <div style={{ padding: '0.75rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '0.5rem', color: 'var(--accent-violet)' }}>
-              <Linkedin size={24} />
+              <FaLinkedin size={24} />
             </div>
             <div>
               <h3 style={{ fontSize: '1rem', fontWeight: 600 }}>LinkedIn</h3>
@@ -34,7 +35,7 @@ export function Contact() {
 
           <a href="https://github.com/Guonejo" target="_blank" rel="noreferrer" className="bento-card" style={{ display: 'flex', alignItems: 'center', gap: '1rem', textDecoration: 'none' }}>
             <div style={{ padding: '0.75rem', background: 'var(--glass-border-hover)', borderRadius: '0.5rem', color: 'var(--text-primary)' }}>
-              <Github size={24} />
+              <FaGithub size={24} />
             </div>
             <div>
               <h3 style={{ fontSize: '1rem', fontWeight: 600 }}>GitHub</h3>

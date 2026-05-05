@@ -1,0 +1,52 @@
+name: Deploy static content to Pages
+
+on:
+  # Ejecuta este workflow cada vez que hagas push a la rama principal (main o master)
+  push:
+    branches: ['main', 'master']
+
+# Permisos necesarios para subir a GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Permite solo un despliegue concurrente a la vez
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  # Trabajo único de construcción y despliegue
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+        
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          
+      - name: Instalar dependencias
+        run: npm install
+        
+      - name: Construir la aplicación (Vite)
+        run: npm run build
+        
+      - name: Configurar Pages
+        uses: actions/configure-pages@v4
+        
+      - name: Subir artefactos de la carpeta dist
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+          
+      - name: Desplegar a GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

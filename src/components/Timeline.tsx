@@ -13,7 +13,7 @@ const experiences = [
     role: "Administración de Servidores y Soporte L1",
     company: "Ópticas Globales",
     period: "2023 - 2025",
-    icon: <Server size={20} style={{ color: 'var(--accent-cyan)' }} />,
+    icon: <Server size={20} style={{ color: 'var(--accent-blue)' }} />,
     description: "Gestión de infraestructura tecnológica y soporte técnico de primer nivel.",
     benefit: "Garantizado un 99% de uptime, asegurando la continuidad del negocio sin interrupciones críticas."
   },
@@ -52,7 +52,7 @@ export function Timeline() {
               <div style={{ paddingBottom: idx !== experiences.length - 1 ? '2rem' : '0' }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'baseline', gap: '0.75rem', marginBottom: '0.5rem' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 600 }}>{exp.role}</h3>
-                  <span style={{ color: 'var(--accent-violet)', fontWeight: 500 }}>@ {exp.company}</span>
+                  <span style={{ color: 'var(--accent-yellow)', fontWeight: 500 }}>@ {exp.company}</span>
                   <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>{exp.period}</span>
                 </div>
                 <p style={{ color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
@@ -61,13 +61,13 @@ export function Timeline() {
                 <div style={{ 
                   display: 'inline-block', 
                   padding: '0.5rem 0.75rem', 
-                  background: 'rgba(6, 182, 212, 0.05)', 
-                  borderLeft: '2px solid var(--accent-cyan)',
+                  background: 'rgba(59, 130, 246, 0.05)', 
+                  borderLeft: '2px solid var(--accent-blue)',
                   borderRadius: '0 0.5rem 0.5rem 0',
                   fontSize: '0.9rem',
                   color: 'var(--text-primary)'
                 }}>
-                  <span style={{ fontWeight: 600, color: 'var(--accent-cyan)' }}>Impacto:</span> {exp.benefit}
+                  <span style={{ fontWeight: 600, color: 'var(--accent-blue)' }}>Impacto:</span> {exp.benefit}
                 </div>
               </div>
             </div>

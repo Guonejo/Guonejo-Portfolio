@@ -3,8 +3,8 @@
   --text-primary: #f3f4f6;
   --text-secondary: #9ca3af;
   --text-muted: #4b5563;
-  --accent-cyan: #06B6D4;
-  --accent-violet: #8B5CF6;
+  --accent-blue: #3B82F6;
+  --accent-yellow: #FACC15;
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-hover: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.08);
@@ -52,7 +52,7 @@ button {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-yellow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -107,13 +107,14 @@ button {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
-  color: #ffffff;
-  box-shadow: 0 4px 14px 0 rgba(6, 182, 212, 0.2);
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-yellow));
+  color: #050505;
+  font-weight: 600;
+  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.2);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 6px 20px rgba(250, 204, 21, 0.3);
   transform: translateY(-1px);
 }
 
@@ -136,9 +137,9 @@ button {
   border-radius: 9999px;
   font-size: 0.8rem;
   font-weight: 500;
-  background: rgba(6, 182, 212, 0.1);
-  color: var(--accent-cyan);
-  border: 1px solid rgba(6, 182, 212, 0.2);
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent-blue);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 /* Subtle background effects */
@@ -167,13 +168,54 @@ button {
 .bg-glow::before {
   top: -10vw;
   left: -10vw;
-  background: var(--accent-cyan);
+  background: var(--accent-blue);
 }
 
 .bg-glow::after {
   bottom: -10vw;
   right: -10vw;
-  background: var(--accent-violet);
+  background: var(--accent-yellow);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
 }
 
 @media (min-width: 768px) {

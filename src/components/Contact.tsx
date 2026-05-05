@@ -14,7 +14,7 @@ export function Contact() {
         
         <div className="bento-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', textAlign: 'left' }}>
           <a href="mailto:matias.carvachos@gmail.com" className="bento-card" style={{ display: 'flex', alignItems: 'center', gap: '1rem', textDecoration: 'none' }}>
-            <div style={{ padding: '0.75rem', background: 'rgba(6, 182, 212, 0.1)', borderRadius: '0.5rem', color: 'var(--accent-cyan)' }}>
+            <div style={{ padding: '0.75rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '0.5rem', color: 'var(--accent-blue)' }}>
               <Mail size={24} />
             </div>
             <div>
@@ -24,7 +24,7 @@ export function Contact() {
           </a>
 
           <a href="https://linkedin.com/in/matias-carvacho" target="_blank" rel="noreferrer" className="bento-card" style={{ display: 'flex', alignItems: 'center', gap: '1rem', textDecoration: 'none' }}>
-            <div style={{ padding: '0.75rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '0.5rem', color: 'var(--accent-violet)' }}>
+            <div style={{ padding: '0.75rem', background: 'rgba(250, 204, 21, 0.1)', borderRadius: '0.5rem', color: 'var(--accent-yellow)' }}>
               <FaLinkedin size={24} />
             </div>
             <div>

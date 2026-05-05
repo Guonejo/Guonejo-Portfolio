@@ -26,53 +26,23 @@ export function CrewControl() {
               </a>
             </div>
             
-            {/* Minimalist Dashboard Mock / Technical Preview */}
+            {/* Real Dashboard Screenshot */}
             <div className="animate-float" style={{ 
               marginTop: '1.5rem', 
-              background: 'rgba(5, 5, 5, 0.8)', 
               borderRadius: '1rem', 
-              padding: '1.5rem',
+              overflow: 'hidden',
               border: '1px solid var(--glass-border-hover)',
-              boxShadow: '0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1rem',
-              zIndex: 1
+              boxShadow: '0 20px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)',
+              zIndex: 1,
+              position: 'relative'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem' }}>
-                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#EF4444' }}></div>
-                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#FACC15' }}></div>
-                <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#10B981' }}></div>
-                <span style={{ marginLeft: '1rem', color: 'var(--text-muted)', fontSize: '0.85rem', fontFamily: 'monospace', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <ShieldCheck size={14} style={{ color: 'var(--accent-blue)' }} /> dashboard.crewcontrol.app
-                </span>
-              </div>
-              
-              {/* Fake UI Elements */}
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
-                {/* Sidebar */}
-                <div style={{ width: '60px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} style={{ height: '32px', borderRadius: '0.5rem', background: i === 1 ? 'rgba(59, 130, 246, 0.2)' : 'var(--glass-bg)', border: i === 1 ? '1px solid rgba(59, 130, 246, 0.5)' : 'none' }}></div>
-                  ))}
-                </div>
-                {/* Main Content Area */}
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  {/* Header Row */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} style={{ background: 'var(--glass-bg)', height: '80px', borderRadius: '0.75rem', border: '1px solid var(--glass-border)', position: 'relative', overflow: 'hidden' }}>
-                        {i === 2 && <div style={{ position: 'absolute', bottom: 0, left: 0, height: '4px', width: '70%', background: 'var(--accent-yellow)', borderRadius: '4px' }}></div>}
-                        {i === 1 && <div style={{ position: 'absolute', bottom: 0, left: 0, height: '4px', width: '40%', background: 'var(--accent-blue)', borderRadius: '4px' }}></div>}
-                      </div>
-                    ))}
-                  </div>
-                  {/* Large Content Area */}
-                  <div style={{ background: 'var(--glass-bg)', height: '120px', borderRadius: '0.75rem', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                     <div style={{ width: '80%', height: '2px', background: 'linear-gradient(90deg, transparent, var(--accent-blue), transparent)', opacity: 0.5 }}></div>
-                  </div>
-                </div>
-              </div>
+              {/* Optional top glare effect */}
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '100%', background: 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 20%)', pointerEvents: 'none' }}></div>
+              <img 
+                src="/crewcontrol-dashboard.png" 
+                alt="CrewControl Dashboard Screenshot" 
+                style={{ width: '100%', height: 'auto', display: 'block', transform: 'scale(1.01)' }} 
+              />
             </div>
           </div>
 

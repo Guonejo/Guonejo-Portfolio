@@ -1048,6 +1048,13 @@ h1, h2, h3, h4, .section-title {
     grid-template-columns: 1fr !important;
   }
 
+  /* Force all bento-grid children to full width on mobile.
+     Needed because CrewControl uses inline gridColumn: 'span N'
+     which can't be overridden without !important. */
+  .bento-grid > * {
+    grid-column: 1 / -1 !important;
+  }
+
   .scroll-indicator {
     display: none;
   }

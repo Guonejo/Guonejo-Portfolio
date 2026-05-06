@@ -2,10 +2,14 @@ import { createContext, useContext, useState, useEffect, type ReactNode } from '
 import translations, { type Lang } from '../i18n/translations';
 
 /* ── Types ── */
+// Both 'es' and 'en' share the same shape — only literal string values differ.
+// We use 'es' as the canonical shape and cast at runtime.
+export type TranslationSet = typeof translations['es'];
+
 interface LanguageContextValue {
   lang: Lang;
   toggleLang: () => void;
-  t: typeof translations['es'];
+  t: TranslationSet;
 }
 
 /* ── Context ── */
@@ -26,7 +30,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const toggleLang = () => setLang((l) => (l === 'es' ? 'en' : 'es'));
 
   return (
-    <LanguageContext.Provider value={{ lang, toggleLang, t: translations[lang] }}>
+    <LanguageContext.Provider value={{ lang, toggleLang, t: translations[lang] as unknown as TranslationSet }}>
       {children}
     </LanguageContext.Provider>
   );

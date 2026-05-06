@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { About } from './components/About';
 import { Skills } from './components/Skills';
 import { CrewControl } from './components/CrewControl';
 import { OtherProjects } from './components/OtherProjects';
@@ -75,6 +76,7 @@ function App() {
 
       <main>
         <Hero />
+        <About />
         <Skills />
         <CrewControl />
         <OtherProjects />

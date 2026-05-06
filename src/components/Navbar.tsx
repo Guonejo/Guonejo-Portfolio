@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Terminal, Menu, X } from 'lucide-react';
 
 const navLinks = [
+  { label: 'Sobre mí', href: '#about' },
   { label: 'CrewControl', href: '#crewcontrol' },
   { label: 'Proyectos', href: '#projects' },
   { label: 'Skills', href: '#skills' },

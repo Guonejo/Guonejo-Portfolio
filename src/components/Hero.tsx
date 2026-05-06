@@ -33,7 +33,6 @@ export function Hero() {
 
           {/* Description */}
           <p className="hero-description">
-            Impulsando el éxito del cliente en Toteat como Customer Service Assistant.
             Especializado en arquitecturas escalables, SaaS B2B y optimización de infraestructura.
             Trabajo con un enfoque de <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>desarrollo ágil asistido por IA</strong> —
             construyo productos funcionales y bien diseñados con ciclos de iteración rápidos.

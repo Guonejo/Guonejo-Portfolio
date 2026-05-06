@@ -4,7 +4,7 @@ const projects = [
   {
     id: 'kickbot',
     title: 'KickBotService',
-    subtitle: 'Dashboard SaaS para Streamers',
+    subtitle: 'Dashboard para Streamers',
     status: 'private' as const,
     description:
       'Plataforma integral para streamers de Kick.com: gestión de servicios de crecimiento, monitoreo de estadísticas en tiempo real (seguidores, viewers, estado del stream) y panel de administración con control de roles.',

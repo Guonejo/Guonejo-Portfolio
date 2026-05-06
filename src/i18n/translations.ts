@@ -100,7 +100,7 @@ const translations = {
           'Contador de tiempo restante del servicio',
           'Integración con API de Kick en tiempo real',
           'Barra de progreso hacia meta de viewers',
-          'Solicitud de reinicio via Telegram automatizada',
+          'Solicitud de reinicio vía Telegram automatizada',
           'Panel admin con gestión masiva de usuarios',
         ],
       },
@@ -324,7 +324,7 @@ const translations = {
       impact: 'Impact:',
     },
     contact: {
-      sectionTitle: "Let's talk about your next project?",
+      sectionTitle: "Let's Talk About Your Next Project",
       description:  'Available for new opportunities, consulting or just a conversation about tech and optimization.',
       cards: {
         email:       'Email',

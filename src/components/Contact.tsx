@@ -50,7 +50,7 @@ export function Contact() {
           sobre tecnología y optimización.
         </p>
 
-        <div className="bento-grid contact-grid reveal-item" style={{ textAlign: 'left' }}>
+        <div className="bento-grid contact-grid reveal-item" style={{ textAlign: 'left', gridTemplateColumns: 'repeat(2, 1fr)' }}>
           {contactLinks.map((link) => (
             <a
               key={link.title}

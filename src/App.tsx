@@ -3,6 +3,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Skills } from './components/Skills';
 import { CrewControl } from './components/CrewControl';
+import { OtherProjects } from './components/OtherProjects';
 import { Timeline } from './components/Timeline';
 import { Contact } from './components/Contact';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
@@ -76,6 +77,7 @@ function App() {
         <Hero />
         <Skills />
         <CrewControl />
+        <OtherProjects />
         <TimelineWrapper />
         <Contact />
       </main>

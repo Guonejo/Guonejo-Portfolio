@@ -736,6 +736,99 @@ h1, h2, h3, h4, .section-title {
   color: var(--text-primary);
 }
 
+/* Project CTAs */
+.project-card__ctas {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.project-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: opacity 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.project-cta:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.project-cta--demo {
+  background: var(--proj-bg, var(--glass-bg));
+  color: var(--cta-color, var(--text-primary));
+  border: 1px solid var(--proj-border, var(--glass-border));
+}
+
+.project-cta--repo {
+  background: var(--glass-bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--glass-border);
+}
+
+/* ============================================================
+   SKELETON SHIMMER
+   ============================================================ */
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ============================================================
+   COPY TOAST
+   ============================================================ */
+.copy-toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background: #10B981;
+  color: #fff;
+  padding: 0.55rem 1.1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 9000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(16,185,129,0.35);
+}
+
+.copy-toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Copy button inside contact card */
+.copy-btn {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.contact-card:hover .copy-btn {
+  opacity: 1;
+}
+
+/* Swipe hint — desktop hidden */
+.swipe-hint {
+  display: none;
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -820,5 +913,9 @@ h1, h2, h3, h4, .section-title {
 
   .scroll-indicator {
     display: none;
+  }
+
+  .swipe-hint {
+    display: block;
   }
 }

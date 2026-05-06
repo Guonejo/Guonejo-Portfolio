@@ -1,14 +1,18 @@
-import { Mail, Calendar, MapPin } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, Calendar, MapPin, Copy, Check } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+
+const EMAIL = 'matias.carvachos@gmail.com';
 
 const contactLinks = [
   {
-    href: 'mailto:matias.carvachos@gmail.com',
+    href: `mailto:${EMAIL}`,
     icon: <Mail size={22} />,
     title: 'Correo Electrónico',
-    sub: 'matias.carvachos@gmail.com',
+    sub: EMAIL,
     iconBg: 'rgba(37, 99, 235, 0.1)',
     iconColor: 'var(--accent-blue)',
+    copyable: true,
   },
   {
     href: 'https://linkedin.com/in/matias-carvacho',
@@ -18,6 +22,7 @@ const contactLinks = [
     sub: 'matias-carvacho',
     iconBg: 'rgba(251, 191, 36, 0.1)',
     iconColor: 'var(--accent-yellow)',
+    copyable: false,
   },
   {
     href: 'https://github.com/Guonejo',
@@ -27,18 +32,30 @@ const contactLinks = [
     sub: 'Guonejo',
     iconBg: 'rgba(255, 255, 255, 0.06)',
     iconColor: 'var(--text-primary)',
+    copyable: false,
   },
   {
-    href: 'mailto:matias.carvachos@gmail.com?subject=Agendar%20Reuni%C3%B3n',
+    href: `mailto:${EMAIL}?subject=Agendar%20Reuni%C3%B3n`,
     icon: <Calendar size={22} />,
     title: 'Agendar Reunión',
     sub: 'Solicitar espacio (vía correo)',
     iconBg: 'rgba(16, 185, 129, 0.1)',
     iconColor: '#10B981',
+    copyable: false,
   },
 ];
 
 export function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText(EMAIL).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    });
+  };
+
   return (
     <section id="contact" className="section reveal-section">
       <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
@@ -50,7 +67,10 @@ export function Contact() {
           sobre tecnología y optimización.
         </p>
 
-        <div className="bento-grid contact-grid reveal-item" style={{ textAlign: 'left', gridTemplateColumns: 'repeat(2, 1fr)' }}>
+        <div
+          className="bento-grid contact-grid reveal-item"
+          style={{ textAlign: 'left', gridTemplateColumns: 'repeat(2, 1fr)' }}
+        >
           {contactLinks.map((link) => (
             <a
               key={link.title}
@@ -58,14 +78,20 @@ export function Contact() {
               target={(link as any).target}
               rel={(link as any).target ? 'noreferrer' : undefined}
               className="bento-card contact-card"
+              onClick={link.copyable ? handleCopy : undefined}
             >
               <div className="contact-card__icon" style={{ background: link.iconBg, color: link.iconColor }}>
                 {link.icon}
               </div>
-              <div>
+              <div style={{ flex: 1, minWidth: 0 }}>
                 <h3 className="contact-card__title">{link.title}</h3>
-                <p className="contact-card__sub">{link.sub}</p>
+                <p className="contact-card__sub" style={{ wordBreak: 'break-word' }}>{link.sub}</p>
               </div>
+              {link.copyable && (
+                <div className="copy-btn" style={{ color: copied ? '#10B981' : 'var(--text-muted)', flexShrink: 0, transition: 'color 0.2s' }}>
+                  {copied ? <Check size={16} /> : <Copy size={16} />}
+                </div>
+              )}
             </a>
           ))}
         </div>
@@ -74,6 +100,12 @@ export function Contact() {
           <MapPin size={15} />
           <span>Santiago / Quilpué, Chile</span>
         </div>
+      </div>
+
+      {/* Copy toast */}
+      <div className={`copy-toast ${copied ? 'copy-toast--visible' : ''}`}>
+        <Check size={14} />
+        ¡Email copiado al portapapeles!
       </div>
     </section>
   );

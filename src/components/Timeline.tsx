@@ -29,13 +29,13 @@ const experiences = [
 
 export function Timeline() {
   return (
-    <section className="section" style={{ background: 'var(--glass-bg)', borderTop: '1px solid var(--glass-border)', borderBottom: '1px solid var(--glass-border)' }}>
+    <section className="section reveal-section">
       <div className="container">
-        <h2 className="section-title">Trayectoria Profesional</h2>
+        <h2 className="section-title reveal-item">Trayectoria Profesional</h2>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '800px' }}>
           {experiences.map((exp, idx) => (
-            <div key={idx} style={{ display: 'flex', gap: '1.5rem' }}>
+            <div key={idx} className="reveal-item" style={{ display: 'flex', gap: '1.5rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '0.25rem' }}>
                 <div style={{ 
                   width: '40px', height: '40px', borderRadius: '50%', 

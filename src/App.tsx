@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { LanguageProvider, useLanguage, useTranslation } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -61,20 +62,32 @@ function TimelineWrapper() {
   );
 }
 
-/* ─── App ─── */
-function App() {
+/* ─── Main content with lang-fade ─── */
+function MainContent() {
   useScrollReveal();
+  const { lang } = useLanguage();
+  const t = useTranslation();
+  const [visible, setVisible] = useState(true);
+  const prevLang = useRef(lang);
+
+  useEffect(() => {
+    if (prevLang.current !== lang) {
+      setVisible(false);
+      const timer = setTimeout(() => {
+        setVisible(true);
+        prevLang.current = lang;
+      }, 180);
+      return () => clearTimeout(timer);
+    }
+  }, [lang]);
 
   return (
     <>
-      {/* Fixed chrome */}
       <ScrollProgress />
       <Navbar />
-
-      {/* Background glow */}
       <div className="bg-glow" />
 
-      <main>
+      <main style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.18s ease' }}>
         <Hero />
         <About />
         <Skills />
@@ -96,7 +109,7 @@ function App() {
           gap: '1rem',
         }}>
           <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-            © {new Date().getFullYear()} Matías Carvacho. Todos los derechos reservados.
+            © {new Date().getFullYear()} Matías Carvacho. {t.footer.rights}
           </span>
           <div style={{ display: 'flex', gap: '1rem' }}>
             <a
@@ -123,6 +136,15 @@ function App() {
         </div>
       </footer>
     </>
+  );
+}
+
+/* ─── App ─── */
+function App() {
+  return (
+    <LanguageProvider>
+      <MainContent />
+    </LanguageProvider>
   );
 }
 

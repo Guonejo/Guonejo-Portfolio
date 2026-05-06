@@ -1,17 +1,21 @@
 import { useState, useRef } from 'react';
 import { Zap, Database, LayoutTemplate, Server, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslation } from '../context/LanguageContext';
 
 const BASE = import.meta.env.BASE_URL;
 
-const screenshots = [
-  { src: `${BASE}crewcontrol-dashboard.webp`,  alt: 'Dashboard principal — vista general de turnos' },
-  { src: `${BASE}SCR-20260506-cwrt.webp`,      alt: 'Vista del calendario semanal de CrewControl' },
-  { src: `${BASE}SCR-20260506-cwue.webp`,      alt: 'Panel de administración de usuarios' },
-  { src: `${BASE}SCR-20260506-cwzh.webp`,      alt: 'Configuración de turnos y horarios' },
-  { src: `${BASE}SCR-20260506-cxbg.webp`,      alt: 'Módulo de reportes y estadísticas' },
-];
-
 function ImageCarousel() {
+  const t = useTranslation();
+  const tc = t.crewcontrol;
+  const screenshots = tc.imgAlts.map((alt, i) => ({
+    src: i === 0 ? `${BASE}crewcontrol-dashboard.webp`
+       : i === 1 ? `${BASE}SCR-20260506-cwrt.webp`
+       : i === 2 ? `${BASE}SCR-20260506-cwue.webp`
+       : i === 3 ? `${BASE}SCR-20260506-cwzh.webp`
+       : `${BASE}SCR-20260506-cxbg.webp`,
+    alt,
+  }));
+
   const [current, setCurrent]   = useState(0);
   const [loaded, setLoaded]     = useState(false);
   const touchStartX             = useRef(0);
@@ -75,7 +79,7 @@ function ImageCarousel() {
           <button
             key={dir}
             onClick={dir === 'prev' ? prev : next}
-            aria-label={dir === 'prev' ? 'Imagen anterior' : 'Imagen siguiente'}
+            aria-label={dir === 'prev' ? tc.arrowPrev : tc.arrowNext}
             style={{
               position: 'absolute',
               [dir === 'prev' ? 'left' : 'right']: '0.75rem',
@@ -100,7 +104,7 @@ function ImageCarousel() {
           <button
             key={i}
             onClick={() => { setLoaded(false); setCurrent(i); }}
-            aria-label={`Ir a imagen ${i + 1}`}
+            aria-label={tc.dotLabel(i)}
             style={{
               width: i === current ? '20px' : '7px', height: '7px',
               borderRadius: '9999px', border: 'none', cursor: 'pointer',
@@ -116,18 +120,21 @@ function ImageCarousel() {
 
       {/* Swipe hint — mobile only */}
       <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.4rem' }} className="swipe-hint">
-        Desliza para ver más screenshots
+        {tc.swipeHint}
       </p>
     </div>
   );
 }
 
 export function CrewControl() {
+  const t = useTranslation();
+  const tc = t.crewcontrol;
+
   return (
     <section id="crewcontrol" className="section" style={{ position: 'relative' }}>
       <div className="container">
         <h2 className="section-title animate-fade-in-up">
-          CrewControl: Optimización de Equipos en el Siglo XXI
+          {tc.sectionTitle}
         </h2>
 
         <div className="bento-grid">
@@ -137,13 +144,13 @@ export function CrewControl() {
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', zIndex: 1 }}>
               <div>
-                <h3 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', fontWeight: 700, letterSpacing: '-0.02em' }}>Plataforma SaaS B2B Ultra-Optimizada</h3>
+                <h3 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', fontWeight: 700, letterSpacing: '-0.02em' }}>{tc.subtitle}</h3>
                 <p style={{ color: 'var(--text-secondary)', maxWidth: '650px', fontSize: '1.05rem', lineHeight: '1.6' }}>
-                  ¿Buscas optimizar la gestión de turnos de tu empresa? CrewControl es una solución lista para ser implementada, con branding dinámico y rendimiento fluido garantizado a 60 FPS.
+                  {tc.description}
                 </p>
               </div>
               <a href="#contact" className="btn btn-primary animate-pulse-glow" style={{ whiteSpace: 'nowrap' }}>
-                Adquirir CrewControl / Solicitar Demo
+                {tc.cta}
               </a>
             </div>
 
@@ -153,37 +160,37 @@ export function CrewControl() {
           {/* Stack & Architecture */}
           <div className="bento-card animate-fade-in-up delay-200" style={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <Database size={36} className="gradient-text" style={{ marginBottom: '1.25rem' }} />
-            <h3 style={{ fontSize: '1.35rem', marginBottom: '0.5rem', fontWeight: 600 }}>Arquitectura Multi-tenant</h3>
+            <h3 style={{ fontSize: '1.35rem', marginBottom: '0.5rem', fontWeight: 600 }}>{tc.multiTenantTitle}</h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
-              Aislamiento de datos robusto con Supabase, permitiendo que múltiples empresas operen de manera segura e independiente en la misma infraestructura.
+              {tc.multiTenantBody}
             </p>
           </div>
 
           <div className="bento-card animate-fade-in-up delay-200" style={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <Zap size={36} className="gradient-text" style={{ marginBottom: '1.25rem' }} />
-            <h3 style={{ fontSize: '1.35rem', marginBottom: '0.5rem', fontWeight: 600 }}>Next.js + React</h3>
+            <h3 style={{ fontSize: '1.35rem', marginBottom: '0.5rem', fontWeight: 600 }}>{tc.nextjsTitle}</h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
-              Renderizado híbrido optimizado, transiciones sin lag y estado global eficiente para una experiencia de usuario que se siente como una app nativa.
+              {tc.nextjsBody}
             </p>
           </div>
 
           {/* Minor cards */}
           <div className="bento-card animate-fade-in-up delay-300" style={{ gridColumn: 'span 4' }}>
             <LayoutTemplate size={28} style={{ color: 'var(--accent-blue)', marginBottom: '1rem' }} />
-            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.1rem' }}>Branding Dinámico</h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>Tematización personalizada por inquilino mediante variables CSS globales.</p>
+            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.1rem' }}>{tc.brandingTitle}</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>{tc.brandingBody}</p>
           </div>
 
           <div className="bento-card animate-fade-in-up delay-300" style={{ gridColumn: 'span 4' }}>
             <ShieldCheck size={28} style={{ color: 'var(--accent-yellow)', marginBottom: '1rem' }} />
-            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.1rem' }}>RBAC y Seguridad</h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>Gestión de roles personalizada (SuperAdmin, Admin, Empleado).</p>
+            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.1rem' }}>{tc.rbacTitle}</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>{tc.rbacBody}</p>
           </div>
 
           <div className="bento-card animate-fade-in-up delay-300" style={{ gridColumn: 'span 4' }}>
             <Server size={28} style={{ color: 'var(--text-primary)', marginBottom: '1rem' }} />
-            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.1rem' }}>Edge Computing</h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>Despliegue distribuido minimizando la latencia para los usuarios finales.</p>
+            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.1rem' }}>{tc.edgeTitle}</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>{tc.edgeBody}</p>
           </div>
         </div>
       </div>

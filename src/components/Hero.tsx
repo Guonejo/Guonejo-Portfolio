@@ -1,12 +1,11 @@
 import { ArrowRight, Terminal, ChevronDown } from 'lucide-react';
-
-const stats = [
-  { value: '99%', label: 'Uptime logrado' },
-  { value: '10+', label: 'Años en IT' },
-  { value: '4', label: 'Proyectos lanzados' },
-];
+import { useTranslation } from '../context/LanguageContext';
 
 export function Hero() {
+  const t = useTranslation();
+  const { stats, titlePre, titleAccent, titlePost, description, descAccent, descEnd,
+          btnPrimary, btnSecondary, available, roleBadge } = t.hero;
+
   return (
     <section className="hero-section section" style={{ paddingTop: '9rem', paddingBottom: '5rem' }}>
       <div className="container">
@@ -15,36 +14,36 @@ export function Hero() {
           {/* Availability badge */}
           <div className="hero-badge">
             <span className="hero-badge__dot" />
-            <span>Disponible para nuevas oportunidades</span>
+            <span>{available}</span>
           </div>
 
           {/* Role badge */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
             <Terminal size={20} className="gradient-text" />
-            <span className="badge">Analista Programador &amp; Infraestructura</span>
+            <span className="badge">{roleBadge}</span>
           </div>
 
           {/* Heading */}
           <h1 className="hero-title">
-            Matías Carvacho:{' '}
-            <span className="gradient-text">Software de Alto Rendimiento</span>{' '}
-            y Continuidad Operativa.
+            {titlePre}{' '}
+            <span className="gradient-text">{titleAccent}</span>{' '}
+            {titlePost}
           </h1>
 
           {/* Description */}
           <p className="hero-description">
-            Especializado en arquitecturas escalables, SaaS B2B y optimización de infraestructura.
-            Trabajo con un enfoque de <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>desarrollo ágil asistido por IA</strong> —
-            construyo productos funcionales y bien diseñados con ciclos de iteración rápidos.
+            {description}{' '}
+            <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{descAccent}</strong>{' '}
+            {descEnd}
           </p>
 
           {/* CTA buttons */}
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '3.5rem' }}>
             <a href="#crewcontrol" className="btn btn-primary">
-              Ver Proyecto Destacado <ArrowRight size={18} />
+              {btnPrimary} <ArrowRight size={18} />
             </a>
             <a href="#contact" className="btn btn-secondary">
-              Contactar
+              {btnSecondary}
             </a>
           </div>
 

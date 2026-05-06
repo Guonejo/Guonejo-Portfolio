@@ -213,6 +213,47 @@ h1, h2, h3, h4, .section-title {
   padding: 0.5rem 1.1rem;
 }
 
+/* Language toggle pill */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 9999px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-family: var(--font-sans);
+}
+
+.lang-toggle:hover {
+  background: var(--glass-hover);
+  border-color: var(--glass-border-hover);
+}
+
+.lang-toggle__opt {
+  color: var(--text-muted);
+  transition: color 0.2s;
+  padding: 0.1rem 0.15rem;
+}
+
+.lang-toggle__opt--active {
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.lang-toggle__divider {
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+
 .navbar__hamburger {
   display: none;
   color: var(--text-primary);

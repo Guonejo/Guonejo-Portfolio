@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Terminal, Menu, X } from 'lucide-react';
-
-const navLinks = [
-  { label: 'Sobre mí', href: '#about' },
-  { label: 'CrewControl', href: '#crewcontrol' },
-  { label: 'Proyectos', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Trayectoria', href: '#timeline' },
-  { label: 'Contacto', href: '#contact' },
-];
+import { useTranslation, useLanguage } from '../context/LanguageContext';
 
 export function Navbar() {
+  const t = useTranslation();
+  const { lang, toggleLang } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -33,7 +27,7 @@ export function Navbar() {
 
         {/* Desktop links */}
         <ul className="navbar__links">
-          {navLinks.map((link) => (
+          {t.navbar.links.map((link) => (
             <li key={link.href}>
               <a href={link.href} className="navbar__link">
                 {link.label}
@@ -42,10 +36,23 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* CTA button */}
-        <a href="#contact" className="btn btn-primary navbar__cta">
-          Contáctame
-        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          {/* Language toggle */}
+          <button
+            className="lang-toggle"
+            onClick={toggleLang}
+            aria-label="Switch language"
+          >
+            <span className={lang === 'es' ? 'lang-toggle__opt lang-toggle__opt--active' : 'lang-toggle__opt'}>ES</span>
+            <span className="lang-toggle__divider">·</span>
+            <span className={lang === 'en' ? 'lang-toggle__opt lang-toggle__opt--active' : 'lang-toggle__opt'}>EN</span>
+          </button>
+
+          {/* CTA */}
+          <a href="#contact" className="btn btn-primary navbar__cta">
+            {t.navbar.cta}
+          </a>
+        </div>
 
         {/* Hamburger — mobile */}
         <button
@@ -59,13 +66,24 @@ export function Navbar() {
 
       {/* Mobile drawer */}
       <div className={`navbar__drawer ${menuOpen ? 'navbar__drawer--open' : ''}`}>
-        {navLinks.map((link) => (
+        {t.navbar.links.map((link) => (
           <a key={link.href} href={link.href} className="navbar__drawer-link" onClick={closeMenu}>
             {link.label}
           </a>
         ))}
+        {/* Language toggle in drawer */}
+        <button
+          className="lang-toggle"
+          onClick={() => { toggleLang(); closeMenu(); }}
+          style={{ alignSelf: 'flex-start', marginTop: '0.25rem' }}
+          aria-label="Switch language"
+        >
+          <span className={lang === 'es' ? 'lang-toggle__opt lang-toggle__opt--active' : 'lang-toggle__opt'}>ES</span>
+          <span className="lang-toggle__divider">·</span>
+          <span className={lang === 'en' ? 'lang-toggle__opt lang-toggle__opt--active' : 'lang-toggle__opt'}>EN</span>
+        </button>
         <a href="#contact" className="btn btn-primary" style={{ marginTop: '0.5rem', width: '100%' }} onClick={closeMenu}>
-          Contáctame
+          {t.navbar.cta}
         </a>
       </div>
     </nav>

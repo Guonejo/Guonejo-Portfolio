@@ -1,52 +1,55 @@
 import { useState } from 'react';
 import { Mail, Calendar, MapPin, Copy, Check } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useTranslation } from '../context/LanguageContext';
 
 const EMAIL = 'matias.carvachos@gmail.com';
 
-const contactLinks = [
-  {
-    href: `mailto:${EMAIL}`,
-    icon: <Mail size={22} />,
-    title: 'Correo Electrónico',
-    sub: EMAIL,
-    iconBg: 'rgba(37, 99, 235, 0.1)',
-    iconColor: 'var(--accent-blue)',
-    copyable: true,
-  },
-  {
-    href: 'https://linkedin.com/in/matias-carvacho',
-    target: '_blank',
-    icon: <FaLinkedin size={22} />,
-    title: 'LinkedIn',
-    sub: 'matias-carvacho',
-    iconBg: 'rgba(251, 191, 36, 0.1)',
-    iconColor: 'var(--accent-yellow)',
-    copyable: false,
-  },
-  {
-    href: 'https://github.com/Guonejo',
-    target: '_blank',
-    icon: <FaGithub size={22} />,
-    title: 'GitHub',
-    sub: 'Guonejo',
-    iconBg: 'rgba(255, 255, 255, 0.06)',
-    iconColor: 'var(--text-primary)',
-    copyable: false,
-  },
-  {
-    href: `mailto:${EMAIL}?subject=Agendar%20Reuni%C3%B3n`,
-    icon: <Calendar size={22} />,
-    title: 'Agendar Reunión',
-    sub: 'Solicitar espacio (vía correo)',
-    iconBg: 'rgba(16, 185, 129, 0.1)',
-    iconColor: '#10B981',
-    copyable: false,
-  },
-];
-
 export function Contact() {
   const [copied, setCopied] = useState(false);
+  const t = useTranslation();
+  const tc = t.contact;
+
+  const contactLinks = [
+    {
+      href: `mailto:${EMAIL}`,
+      icon: <Mail size={22} />,
+      title: tc.cards.email,
+      sub: EMAIL,
+      iconBg: 'rgba(37, 99, 235, 0.1)',
+      iconColor: 'var(--accent-blue)',
+      copyable: true,
+    },
+    {
+      href: 'https://linkedin.com/in/matias-carvacho',
+      target: '_blank',
+      icon: <FaLinkedin size={22} />,
+      title: 'LinkedIn',
+      sub: 'matias-carvacho',
+      iconBg: 'rgba(251, 191, 36, 0.1)',
+      iconColor: 'var(--accent-yellow)',
+      copyable: false,
+    },
+    {
+      href: 'https://github.com/Guonejo',
+      target: '_blank',
+      icon: <FaGithub size={22} />,
+      title: 'GitHub',
+      sub: 'Guonejo',
+      iconBg: 'rgba(255, 255, 255, 0.06)',
+      iconColor: 'var(--text-primary)',
+      copyable: false,
+    },
+    {
+      href: `mailto:${EMAIL}?subject=Agendar%20Reuni%C3%B3n`,
+      icon: <Calendar size={22} />,
+      title: tc.cards.schedule,
+      sub: tc.cards.scheduleSub,
+      iconBg: 'rgba(16, 185, 129, 0.1)',
+      iconColor: '#10B981',
+      copyable: false,
+    },
+  ];
 
   const handleCopy = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -60,11 +63,10 @@ export function Contact() {
     <section id="contact" className="section reveal-section">
       <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
         <h2 className="section-title reveal-item">
-          ¿Hablamos de tu próximo proyecto?
+          {tc.sectionTitle}
         </h2>
         <p className="reveal-item" style={{ color: 'var(--text-secondary)', marginBottom: '3rem', fontSize: '1.1rem' }}>
-          Disponible para nuevas oportunidades, consultorías o simplemente para hablar
-          sobre tecnología y optimización.
+          {tc.description}
         </p>
 
         <div
@@ -98,14 +100,14 @@ export function Contact() {
 
         <div className="contact-location reveal-item">
           <MapPin size={15} />
-          <span>Santiago / Quilpué, Chile</span>
+          <span>{tc.location}</span>
         </div>
       </div>
 
       {/* Copy toast */}
       <div className={`copy-toast ${copied ? 'copy-toast--visible' : ''}`}>
         <Check size={14} />
-        ¡Email copiado al portapapeles!
+        {tc.toast}
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { ExternalLink, Bot, Wallet, ShoppingCart, CheckCircle2 } from 'lucide-react';
+import { Bot, Wallet, ShoppingCart, CheckCircle2 } from 'lucide-react';
 
 const projects = [
   {

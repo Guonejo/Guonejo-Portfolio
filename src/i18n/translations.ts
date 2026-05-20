@@ -61,7 +61,7 @@ const translations = {
     crewcontrol: {
       sectionTitle: 'CrewControl: Optimización de Equipos en el Siglo XXI',
       subtitle:     'Plataforma SaaS B2B Ultra-Optimizada',
-      description:  '¿Buscas optimizar la gestión de turnos de tu empresa? CrewControl es una solución lista para ser implementada, con branding dinámico y rendimiento fluido garantizado a 60 FPS.',
+      description:  '¿Buscas optimizar la gestión de turnos de tu empresa? CrewControl es una solución lista para ser implementada, con branding dinámico y rendimiento fluido.',
       cta:          'Adquirir CrewControl / Solicitar Demo',
       swipeHint:    'Desliza para ver más screenshots',
       multiTenantTitle: 'Arquitectura Multi-tenant',
@@ -230,7 +230,7 @@ const translations = {
     crewcontrol: {
       sectionTitle: 'CrewControl: 21st Century Team Optimization',
       subtitle:     'Ultra-Optimized B2B SaaS Platform',
-      description:  'Looking to optimize your company\'s shift management? CrewControl is a ready-to-deploy solution with dynamic branding and smooth performance guaranteed at 60 FPS.',
+      description:  'Looking to optimize your company\'s shift management? CrewControl is a ready-to-deploy solution with dynamic branding and smooth performance.',
       cta:          'Get CrewControl / Request Demo',
       swipeHint:    'Swipe to see more screenshots',
       multiTenantTitle: 'Multi-tenant Architecture',

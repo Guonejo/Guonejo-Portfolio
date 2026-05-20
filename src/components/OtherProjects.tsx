@@ -24,7 +24,7 @@ const projectMeta = [
     status: 'live' as const,
     tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Framer Motion', 'Recharts'],
     services: [],
-    demoUrl: '',
+    demoUrl: 'https://personal-moneyplanner.netlify.app',
     repoUrl: '',
   },
   {

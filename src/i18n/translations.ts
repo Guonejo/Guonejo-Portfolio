@@ -126,6 +126,16 @@ const translations = {
           'Backend OCR propio en Node.js (Render)',
         ],
       },
+      torneoDelMillon: {
+        subtitle:    'Tournament Planner',
+        description: 'Plataforma web para la gestión, organización y seguimiento en tiempo real de torneos eSports. Permite visualizar llaves, reglas, jugadores y el estado del stream.',
+        highlights: [
+          'Panel de administración en tiempo real',
+          'Integración con API para estado del stream',
+          'Uso de Riot API para datos oficiales',
+          'Server Actions para manejo seguro de datos',
+        ],
+      },
     },
     timeline: {
       sectionTitle: 'Trayectoria Profesional',
@@ -293,6 +303,16 @@ const translations = {
           'Collaborative shopping lists',
           'Household/family invitation system',
           'Custom OCR backend in Node.js (Render)',
+        ],
+      },
+      torneoDelMillon: {
+        subtitle:    'Tournament Planner',
+        description: 'Web platform for real-time management, organization, and tracking of eSports tournaments. View brackets, rules, players, and stream status.',
+        highlights: [
+          'Real-time administration panel',
+          'Stream status API integration',
+          'Riot API for official game data',
+          'Server Actions for secure data handling',
         ],
       },
     },

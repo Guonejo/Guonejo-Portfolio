@@ -1,8 +1,20 @@
-import { Bot, Wallet, ShoppingCart, CheckCircle2, ExternalLink, Lock } from 'lucide-react';
+import { Bot, Wallet, ShoppingCart, CheckCircle2, ExternalLink, Lock, Trophy } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import { useTranslation } from '../context/LanguageContext';
 
 const projectMeta = [
+  {
+    id: 'torneoDelMillon',
+    icon: <Trophy size={28} />,
+    accentColor: '#A855F7',
+    accentBg: 'rgba(168, 85, 247, 0.07)',
+    accentBorder: 'rgba(168, 85, 247, 0.2)',
+    status: 'live' as const,
+    tags: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Zustand'],
+    services: [],
+    demoUrl: 'https://torneodelmillon.com/',
+    repoUrl: '',
+  },
   {
     id: 'kickbot',
     icon: <Bot size={28} />,
@@ -52,9 +64,10 @@ export function OtherProjects() {
   const tp = t.projects;
 
   const projectsData = [
-    { ...projectMeta[0], ...tp.kickbot },
-    { ...projectMeta[1], ...tp.moneyPlanner },
-    { ...projectMeta[2], ...tp.despensago },
+    { ...projectMeta[0], ...tp.torneoDelMillon },
+    { ...projectMeta[1], ...tp.kickbot },
+    { ...projectMeta[2], ...tp.moneyPlanner },
+    { ...projectMeta[3], ...tp.despensago },
   ];
 
   return (
@@ -88,7 +101,7 @@ export function OtherProjects() {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
                       <h3 className="project-card__title">
-                        {proj.id === 'kickbot' ? 'KickBotService' : proj.id === 'moneyPlanner' ? 'Money Planner' : 'DespensaGO'}
+                        {proj.id === 'torneoDelMillon' ? 'Torneo del Millón' : proj.id === 'kickbot' ? 'KickBotService' : proj.id === 'moneyPlanner' ? 'Money Planner' : 'DespensaGO'}
                       </h3>
                       {/* Status badge */}
                       <span className="project-card__badge" style={{ background: st.bg, borderColor: st.border, color: st.color }}>

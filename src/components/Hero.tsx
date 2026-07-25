@@ -5,7 +5,7 @@ import { useTranslation } from '../context/LanguageContext';
 
 export function Hero() {
   const t = useTranslation();
-  const { stats, titlePre, titleAccent, titlePost, description, descAccent, descEnd,
+  const { stats, titlePre, titleAccent, description, descAccent, descEnd,
           btnPrimary, btnSecondary, available, roleBadge } = t.hero;
 
   return (
@@ -29,11 +29,12 @@ export function Hero() {
             </div>
 
             {/* Heading */}
+            <p className="hero-name-label">Matías Carvacho</p>
             <h1 className="hero-title">
               {titlePre}{' '}
-              <span className="gradient-text">{titleAccent}</span>{' '}
-              {titlePost}
+              <span className="gradient-text">{titleAccent}</span>
             </h1>
+
 
             {/* Description */}
             <p className="hero-description">

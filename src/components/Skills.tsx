@@ -1,23 +1,49 @@
 import { useTranslation } from '../context/LanguageContext';
+import {
+  SiReact, SiNextdotjs, SiTypescript, SiVite, SiCss, SiHtml5,
+  SiNodedotjs, SiSupabase, SiPostgresql, SiAxios,
+  SiLinux, SiGit, SiGithub, SiVercel, SiNetlify,
+} from 'react-icons/si';
+import { Globe } from 'lucide-react';
 
 const skillGroups = [
   {
     color: 'var(--accent-blue)',
     bg: 'rgba(37, 99, 235, 0.08)',
     border: 'rgba(37, 99, 235, 0.2)',
-    skills: ['React', 'Next.js', 'TypeScript', 'Vite', 'CSS / Tailwind', 'HTML5'],
+    skills: [
+      { name: 'React',        icon: <SiReact /> },
+      { name: 'Next.js',      icon: <SiNextdotjs /> },
+      { name: 'TypeScript',   icon: <SiTypescript /> },
+      { name: 'Vite',         icon: <SiVite /> },
+      { name: 'CSS / Tailwind', icon: <SiCss /> },
+      { name: 'HTML5',        icon: <SiHtml5 /> },
+    ],
   },
   {
     color: '#10B981',
     bg: 'rgba(16, 185, 129, 0.08)',
     border: 'rgba(16, 185, 129, 0.2)',
-    skills: ['Node.js', 'Supabase', 'PostgreSQL', 'REST APIs', 'Auth / RBAC'],
+    skills: [
+      { name: 'Node.js',    icon: <SiNodedotjs /> },
+      { name: 'Supabase',   icon: <SiSupabase /> },
+      { name: 'PostgreSQL', icon: <SiPostgresql /> },
+      { name: 'REST APIs',  icon: <Globe size={14} /> },
+      { name: 'Auth / RBAC', icon: <SiAxios /> },
+    ],
   },
   {
     color: 'var(--accent-yellow)',
     bg: 'rgba(251, 191, 36, 0.08)',
     border: 'rgba(251, 191, 36, 0.2)',
-    skills: ['Linux Server', 'LAN / Redes', 'Soporte L1', 'Hardware', 'Git / GitHub', 'Vercel / Netlify'],
+    skills: [
+      { name: 'Linux Server', icon: <SiLinux /> },
+      { name: 'LAN / Redes',  icon: <Globe size={14} /> },
+      { name: 'Git',          icon: <SiGit /> },
+      { name: 'GitHub',       icon: <SiGithub /> },
+      { name: 'Vercel',       icon: <SiVercel /> },
+      { name: 'Netlify',      icon: <SiNetlify /> },
+    ],
   },
 ];
 
@@ -39,15 +65,17 @@ export function Skills() {
               <div className="skills-pills">
                 {group.skills.map((skill) => (
                   <span
-                    key={skill}
+                    key={skill.name}
                     className="skill-pill"
                     style={{
                       background: group.bg,
                       borderColor: group.border,
                       color: group.color,
+                      gap: '0.4rem',
                     }}
                   >
-                    {skill}
+                    <span style={{ display: 'flex', alignItems: 'center', fontSize: '0.95em' }}>{skill.icon}</span>
+                    {skill.name}
                   </span>
                 ))}
               </div>
@@ -58,3 +86,4 @@ export function Skills() {
     </section>
   );
 }
+

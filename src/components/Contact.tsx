@@ -60,7 +60,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="section reveal-section">
+    <section id="contact" className="section reveal-section contact-section">
       <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
         <h2 className="section-title reveal-item">
           {tc.sectionTitle}

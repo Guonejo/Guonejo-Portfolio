@@ -9,8 +9,8 @@ import { Globe } from 'lucide-react';
 const skillGroups = [
   {
     color: 'var(--accent-blue)',
-    bg: 'rgba(37, 99, 235, 0.08)',
-    border: 'rgba(37, 99, 235, 0.2)',
+    bg: 'rgba(124, 58, 237, 0.08)',
+    border: 'rgba(124, 58, 237, 0.2)',
     skills: [
       { name: 'React',        icon: <SiReact /> },
       { name: 'Next.js',      icon: <SiNextdotjs /> },
@@ -34,8 +34,8 @@ const skillGroups = [
   },
   {
     color: 'var(--accent-yellow)',
-    bg: 'rgba(251, 191, 36, 0.08)',
-    border: 'rgba(251, 191, 36, 0.2)',
+    bg: 'rgba(232, 121, 249, 0.08)',
+    border: 'rgba(232, 121, 249, 0.2)',
     skills: [
       { name: 'Linux Server', icon: <SiLinux /> },
       { name: 'LAN / Redes',  icon: <Globe size={14} /> },

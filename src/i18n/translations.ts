@@ -15,7 +15,7 @@ const translations = {
     },
     hero: {
       available:   'Disponible para nuevas oportunidades',
-      roleBadge:   'Analista Programador & Infraestructura',
+      roleBadge:   'Programmer Analyst | IT Infrastructure & Hardware',
       titlePre:    'Desarrollo software',
       titleAccent: 'de alto rendimiento.',
       titlePost:   '',
@@ -194,7 +194,7 @@ const translations = {
     },
     hero: {
       available:   'Available for new opportunities',
-      roleBadge:   'Software Developer & Infrastructure',
+      roleBadge:   'Programmer Analyst | IT Infrastructure & Hardware',
       titlePre:    'I build software',
       titleAccent: 'that performs.',
       titlePost:   '',

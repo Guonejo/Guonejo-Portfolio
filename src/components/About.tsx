@@ -8,9 +8,9 @@ const pillarIcons = [
 ];
 
 const pillarColors = [
-  { color: 'var(--accent-blue)', bg: 'rgba(37, 99, 235, 0.08)', border: 'rgba(37, 99, 235, 0.2)' },
+  { color: 'var(--accent-blue)', bg: 'rgba(124, 58, 237, 0.08)', border: 'rgba(124, 58, 237, 0.2)' },
   { color: '#10B981',            bg: 'rgba(16, 185, 129, 0.08)', border: 'rgba(16, 185, 129, 0.2)' },
-  { color: 'var(--accent-yellow)', bg: 'rgba(251, 191, 36, 0.08)', border: 'rgba(251, 191, 36, 0.2)' },
+  { color: 'var(--accent-yellow)', bg: 'rgba(232, 121, 249, 0.08)', border: 'rgba(232, 121, 249, 0.2)' },
 ];
 
 export function About() {

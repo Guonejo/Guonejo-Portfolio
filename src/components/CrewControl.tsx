@@ -18,10 +18,16 @@ function ImageCarousel() {
 
   const [current, setCurrent]   = useState(0);
   const [loaded, setLoaded]     = useState(false);
+  const [direction, setDirection] = useState<'left' | 'right'>('right');
   const touchStartX             = useRef(0);
 
-  const prev = () => { setLoaded(false); setCurrent((c) => (c - 1 + screenshots.length) % screenshots.length); };
-  const next = () => { setLoaded(false); setCurrent((c) => (c + 1) % screenshots.length); };
+  const goTo = (idx: number, dir: 'left' | 'right') => {
+    setDirection(dir);
+    setLoaded(false);
+    setCurrent(idx);
+  };
+  const prev = () => goTo((current - 1 + screenshots.length) % screenshots.length, 'left');
+  const next = () => goTo((current + 1) % screenshots.length, 'right');
 
   const onTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
   const onTouchEnd   = (e: React.TouchEvent) => {
@@ -30,35 +36,32 @@ function ImageCarousel() {
   };
 
   return (
-    <div style={{ position: 'relative', marginTop: '1.5rem', zIndex: 1 }}>
-      {/* Frame */}
+    <div className="carousel-wrapper">
+      {/* Mac/Browser chrome bar */}
+      <div className="carousel-chrome">
+        <div className="carousel-chrome__dots">
+          <span style={{ background: '#FF5F57' }} />
+          <span style={{ background: '#FEBC2E' }} />
+          <span style={{ background: '#28C840' }} />
+        </div>
+        <div className="carousel-chrome__url">
+          <span className="carousel-chrome__url-text">crewcontrol.app</span>
+        </div>
+      </div>
+
+      {/* Main image frame */}
       <div
+        className="carousel-frame"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
-        style={{
-          borderRadius: '1rem',
-          overflow: 'hidden',
-          border: '1px solid var(--glass-border-hover)',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)',
-          position: 'relative',
-          backgroundColor: '#0a0a0a',
-          cursor: 'grab',
-          minHeight: '180px',
-        }}
       >
         {/* Skeleton */}
         {!loaded && (
-          <div style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(90deg, #111 25%, #1a1a1a 50%, #111 75%)',
-            backgroundSize: '200% 100%',
-            animation: 'skeleton-shimmer 1.4s infinite',
-            zIndex: 1,
-          }} />
+          <div className="carousel-skeleton" />
         )}
 
-        {/* Glare */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 18%)', pointerEvents: 'none', zIndex: 2 }} />
+        {/* Top glare */}
+        <div className="carousel-glare" />
 
         <img
           key={current}
@@ -66,65 +69,52 @@ function ImageCarousel() {
           alt={screenshots[current].alt}
           loading="lazy"
           onLoad={() => setLoaded(true)}
-          style={{
-            width: '100%', height: 'auto', display: 'block',
-            transform: 'scale(1.01)',
-            opacity: loaded ? 1 : 0,
-            transition: 'opacity 0.35s ease',
-          }}
+          className={`carousel-img carousel-img--${direction}`}
+          style={{ opacity: loaded ? 1 : 0 }}
         />
 
         {/* Nav arrows */}
-        {(['prev', 'next'] as const).map((dir) => (
+        <button
+          onClick={prev}
+          aria-label={tc.arrowPrev}
+          className="carousel-arrow carousel-arrow--prev"
+        >
+          <ChevronLeft size={20} />
+        </button>
+        <button
+          onClick={next}
+          aria-label={tc.arrowNext}
+          className="carousel-arrow carousel-arrow--next"
+        >
+          <ChevronRight size={20} />
+        </button>
+
+        {/* Slide counter */}
+        <div className="carousel-counter">
+          {current + 1} / {screenshots.length}
+        </div>
+      </div>
+
+      {/* Thumbnail strip */}
+      <div className="carousel-thumbnails">
+        {screenshots.map((shot, i) => (
           <button
-            key={dir}
-            onClick={dir === 'prev' ? prev : next}
-            aria-label={dir === 'prev' ? tc.arrowPrev : tc.arrowNext}
-            style={{
-              position: 'absolute',
-              [dir === 'prev' ? 'left' : 'right']: '0.75rem',
-              top: '50%', transform: 'translateY(-50%)',
-              background: 'rgba(0,0,0,0.6)', border: '1px solid var(--glass-border)',
-              color: '#fff', borderRadius: '50%',
-              width: '36px', height: '36px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              cursor: 'pointer', zIndex: 3, transition: 'background 0.2s',
-            }}
-            onMouseEnter={e => (e.currentTarget.style.background = 'rgba(37,99,235,0.75)')}
-            onMouseLeave={e => (e.currentTarget.style.background = 'rgba(0,0,0,0.6)')}
+            key={i}
+            onClick={() => goTo(i, i > current ? 'right' : 'left')}
+            aria-label={tc.dotLabel(i)}
+            className={`carousel-thumb ${i === current ? 'active' : ''}`}
           >
-            {dir === 'prev' ? <ChevronLeft size={18} /> : <ChevronRight size={18} />}
+            <img src={shot.src} alt={shot.alt} loading="lazy" />
           </button>
         ))}
       </div>
 
-      {/* Dot indicators */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '0.9rem' }}>
-        {screenshots.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => { setLoaded(false); setCurrent(i); }}
-            aria-label={tc.dotLabel(i)}
-            style={{
-              width: i === current ? '20px' : '7px', height: '7px',
-              borderRadius: '9999px', border: 'none', cursor: 'pointer',
-              transition: 'width 0.3s ease, background 0.2s',
-              background: i === current
-                ? 'linear-gradient(90deg, var(--accent-blue), var(--accent-yellow))'
-                : 'var(--glass-border-hover)',
-              padding: 0,
-            }}
-          />
-        ))}
-      </div>
-
       {/* Swipe hint — mobile only */}
-      <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.4rem' }} className="swipe-hint">
-        {tc.swipeHint}
-      </p>
+      <p className="swipe-hint">{tc.swipeHint}</p>
     </div>
   );
 }
+
 
 export function CrewControl() {
   const t = useTranslation();

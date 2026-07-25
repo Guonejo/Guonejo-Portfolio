@@ -1175,12 +1175,210 @@ h1, h2, h3, h4, .section-title {
 }
 
 /* ============================================================
+   CAROUSEL — REDESIGNED
+   ============================================================ */
+.carousel-wrapper {
+  position: relative;
+  margin-top: 1.5rem;
+  z-index: 1;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(109, 40, 217, 0.25),
+    0 24px 60px rgba(0, 0, 0, 0.7),
+    0 0 80px rgba(109, 40, 217, 0.12);
+}
+
+/* Mac-style chrome bar */
+.carousel-chrome {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 1rem;
+  background: #111115;
+  border-bottom: 1px solid rgba(109, 40, 217, 0.15);
+}
+
+.carousel-chrome__dots {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.carousel-chrome__dots span {
+  display: block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+.carousel-chrome__url {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-chrome__url-text {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.4rem;
+  padding: 0.15rem 1.2rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+/* Main image frame */
+.carousel-frame {
+  position: relative;
+  overflow: hidden;
+  background: #08080c;
+  cursor: grab;
+  min-height: 180px;
+}
+
+.carousel-frame:active { cursor: grabbing; }
+
+/* Skeleton */
+.carousel-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #0e0e12 25%, #16161c 50%, #0e0e12 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s infinite;
+  z-index: 1;
+}
+
+/* Glare */
+.carousel-glare {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, transparent 20%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Image with slide animation */
+.carousel-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.4s ease;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(4%); opacity: 0; }
+  to   { transform: translateX(0);  opacity: 1; }
+}
+@keyframes slide-in-left {
+  from { transform: translateX(-4%); opacity: 0; }
+  to   { transform: translateX(0);   opacity: 1; }
+}
+
+.carousel-img--right { animation: slide-in-right 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.carousel-img--left  { animation: slide-in-left  0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+
+/* Arrow buttons */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(5, 5, 8, 0.75);
+  border: 1px solid rgba(109, 40, 217, 0.3);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.carousel-arrow:hover {
+  background: rgba(109, 40, 217, 0.7);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 18px rgba(109, 40, 217, 0.5);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-arrow--prev { left: 0.75rem; }
+.carousel-arrow--next { right: 0.75rem; }
+
+/* Slide counter */
+.carousel-counter {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.85rem;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.4rem;
+  z-index: 3;
+  letter-spacing: 0.05em;
+}
+
+/* Thumbnail strip */
+.carousel-thumbnails {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  background: #111115;
+  border-top: 1px solid rgba(109, 40, 217, 0.12);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.carousel-thumbnails::-webkit-scrollbar { display: none; }
+
+.carousel-thumb {
+  flex-shrink: 0;
+  width: 68px;
+  height: 42px;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  padding: 0;
+  background: #1a1a20;
+}
+
+.carousel-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.65);
+  transition: filter 0.2s;
+}
+
+.carousel-thumb:hover img { filter: brightness(0.9); }
+.carousel-thumb:hover { border-color: rgba(109, 40, 217, 0.5); transform: translateY(-1px); }
+
+.carousel-thumb.active {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 12px rgba(109, 40, 217, 0.45);
+}
+
+.carousel-thumb.active img { filter: brightness(1); }
+
+/* ============================================================
    SKELETON SHIMMER
    ============================================================ */
 @keyframes skeleton-shimmer {
   0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }
+
 
 /* ============================================================
    COPY TOAST

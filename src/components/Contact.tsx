@@ -3,7 +3,7 @@ import { Mail, Calendar, MapPin, Copy, Check } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { useTranslation } from '../context/LanguageContext';
 
-const EMAIL = 'matias.carvachos@gmail.com';
+const EMAIL = 'ma.carvachos@gmail.com';
 
 export function Contact() {
   const [copied, setCopied] = useState(false);

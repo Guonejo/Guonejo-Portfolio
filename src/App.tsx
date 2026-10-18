@@ -53,15 +53,6 @@ function useScrollReveal() {
   }, []);
 }
 
-/* ─── Timeline wrapper with id for anchor nav ─── */
-function TimelineWrapper() {
-  return (
-    <div id="timeline" className="timeline-section">
-      <Timeline />
-    </div>
-  );
-}
-
 /* ─── Main content with lang-fade ─── */
 function MainContent() {
   useScrollReveal();
@@ -93,13 +84,14 @@ function MainContent() {
         <Skills />
         <CrewControl />
         <OtherProjects />
-        <TimelineWrapper />
+        <Timeline />
         <Contact />
       </main>
 
       <footer style={{
-        padding: '2rem 0',
+        padding: '2.5rem 0',
         borderTop: '1px solid var(--glass-border)',
+        background: 'rgba(8, 7, 14, 0.7)',
       }}>
         <div className="container" style={{
           display: 'flex',
@@ -111,12 +103,13 @@ function MainContent() {
           <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
             © {new Date().getFullYear()} Matías Carvacho. {t.footer.rights}
           </span>
-          <div style={{ display: 'flex', gap: '1rem' }}>
+          <div style={{ display: 'flex', gap: '1.25rem' }}>
             <a
               href="https://github.com/Guonejo"
               target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--text-muted)', transition: 'color 0.2s' }}
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              style={{ color: 'var(--text-muted)', transition: 'color 0.2s', display: 'flex', alignItems: 'center' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
             >
@@ -125,9 +118,10 @@ function MainContent() {
             <a
               href="https://linkedin.com/in/matias-carvacho"
               target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--text-muted)', transition: 'color 0.2s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-yellow)')}
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+              style={{ color: 'var(--text-muted)', transition: 'color 0.2s', display: 'flex', alignItems: 'center' }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--accent-secondary)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-muted)')}
             >
               <FaLinkedin size={18} />

@@ -58,14 +58,16 @@ export function Navbar() {
         <button
           className="navbar__hamburger"
           onClick={() => setMenuOpen((o) => !o)}
-          aria-label="Abrir menú"
+          aria-label={menuOpen ? (lang === 'es' ? 'Cerrar navegación' : 'Close navigation') : (lang === 'es' ? 'Abrir navegación' : 'Open navigation')}
+          aria-expanded={menuOpen}
+          aria-controls="navbar-mobile-drawer"
         >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
         </button>
       </div>
 
       {/* Mobile drawer */}
-      <div className={`navbar__drawer ${menuOpen ? 'navbar__drawer--open' : ''}`}>
+      <div id="navbar-mobile-drawer" className={`navbar__drawer ${menuOpen ? 'navbar__drawer--open' : ''}`} aria-hidden={!menuOpen}>
         {t.navbar.links.map((link) => (
           <a key={link.href} href={link.href} className="navbar__drawer-link" onClick={closeMenu}>
             {link.label}

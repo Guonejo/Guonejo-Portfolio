@@ -16,8 +16,8 @@ export function Contact() {
       icon: <Mail size={22} />,
       title: tc.cards.email,
       sub: EMAIL,
-      iconBg: 'rgba(124, 58, 237, 0.1)',
-      iconColor: 'var(--accent-blue)',
+      iconBg: 'rgba(124, 58, 237, 0.12)',
+      iconColor: '#A78BFA',
       copyable: true,
     },
     {
@@ -26,8 +26,8 @@ export function Contact() {
       icon: <FaLinkedin size={22} />,
       title: 'LinkedIn',
       sub: 'matias-carvacho',
-      iconBg: 'rgba(232, 121, 249, 0.1)',
-      iconColor: 'var(--accent-yellow)',
+      iconBg: 'rgba(129, 140, 248, 0.12)',
+      iconColor: '#818CF8',
       copyable: false,
     },
     {
@@ -36,17 +36,17 @@ export function Contact() {
       icon: <FaGithub size={22} />,
       title: 'GitHub',
       sub: 'Guonejo',
-      iconBg: 'rgba(255, 255, 255, 0.06)',
+      iconBg: 'rgba(255, 255, 255, 0.05)',
       iconColor: 'var(--text-primary)',
       copyable: false,
     },
     {
-      href: `mailto:${EMAIL}?subject=Agendar%20Reuni%C3%B3n`,
+      href: `mailto:${EMAIL}?subject=${encodeURIComponent(tc.emailSubject)}`,
       icon: <Calendar size={22} />,
       title: tc.cards.schedule,
       sub: tc.cards.scheduleSub,
-      iconBg: 'rgba(16, 185, 129, 0.1)',
-      iconColor: '#10B981',
+      iconBg: 'rgba(196, 181, 253, 0.12)',
+      iconColor: '#C4B5FD',
       copyable: false,
     },
   ];
@@ -78,7 +78,7 @@ export function Contact() {
               key={link.title}
               href={link.href}
               target={(link as any).target}
-              rel={(link as any).target ? 'noreferrer' : undefined}
+              rel={(link as any).target ? 'noopener noreferrer' : undefined}
               className="bento-card contact-card"
               onClick={link.copyable ? handleCopy : undefined}
             >
@@ -90,7 +90,12 @@ export function Contact() {
                 <p className="contact-card__sub" style={{ wordBreak: 'break-word' }}>{link.sub}</p>
               </div>
               {link.copyable && (
-                <div className="copy-btn" style={{ color: copied ? '#10B981' : 'var(--text-muted)', flexShrink: 0, transition: 'color 0.2s' }}>
+                <div
+                  className="copy-btn"
+                  role="status"
+                  aria-label={copied ? tc.toast : 'Copiar correo'}
+                  style={{ color: copied ? '#10B981' : 'var(--text-muted)', flexShrink: 0, transition: 'color 0.2s' }}
+                >
                   {copied ? <Check size={16} /> : <Copy size={16} />}
                 </div>
               )}

@@ -8,8 +8,8 @@ const projectMeta = [
     id: 'torneoDelMillon',
     icon: <Trophy size={28} />,
     accentColor: '#A855F7',
-    accentBg: 'rgba(168, 85, 247, 0.07)',
-    accentBorder: 'rgba(168, 85, 247, 0.2)',
+    accentBg: 'rgba(168, 85, 247, 0.08)',
+    accentBorder: 'rgba(168, 85, 247, 0.22)',
     status: 'live' as const,
     tags: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Zustand'],
     services: [],
@@ -19,21 +19,21 @@ const projectMeta = [
   {
     id: 'kickbot',
     icon: <Bot size={28} />,
-    accentColor: '#53FC18',
-    accentBg: 'rgba(83, 252, 24, 0.07)',
-    accentBorder: 'rgba(83, 252, 24, 0.2)',
+    accentColor: '#818CF8',
+    accentBg: 'rgba(129, 140, 248, 0.08)',
+    accentBorder: 'rgba(129, 140, 248, 0.22)',
     status: 'private' as const,
     tags: ['React', 'Vite', 'Tailwind CSS', 'Supabase', 'Netlify Functions', 'Axios'],
-    services: ['Viewbots Kick', 'Seguidores / Likes Instagram', 'Seguidores / Likes TikTok'],
+    services: ['Telemetría de Streams', 'Métricas de Audiencia', 'Alertas Automatizadas'],
     demoUrl: '',
     repoUrl: '',
   },
   {
     id: 'moneyPlanner',
     icon: <Wallet size={28} />,
-    accentColor: '#10B981',
-    accentBg: 'rgba(16, 185, 129, 0.07)',
-    accentBorder: 'rgba(16, 185, 129, 0.2)',
+    accentColor: '#34D399',
+    accentBg: 'rgba(16, 185, 129, 0.08)',
+    accentBorder: 'rgba(16, 185, 129, 0.22)',
     status: 'live' as const,
     tags: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Framer Motion', 'Recharts'],
     services: [],
@@ -43,9 +43,9 @@ const projectMeta = [
   {
     id: 'despensago',
     icon: <ShoppingCart size={28} />,
-    accentColor: 'var(--accent-yellow)',
-    accentBg: 'rgba(232, 121, 249, 0.07)',
-    accentBorder: 'rgba(232, 121, 249, 0.2)',
+    accentColor: '#C4B5FD',
+    accentBg: 'rgba(196, 181, 253, 0.08)',
+    accentBorder: 'rgba(196, 181, 253, 0.22)',
     status: 'academic' as const,
     tags: ['Ionic + Angular 19', 'TypeScript', 'Capacitor', 'Supabase', 'Node.js / Express', 'Google Cloud Vision'],
     services: [],
@@ -55,9 +55,9 @@ const projectMeta = [
 ];
 
 const statusStyles = {
-  live:     { color: '#10B981', bg: 'rgba(16,185,129,0.1)',  border: 'rgba(16,185,129,0.25)' },
-  private:  { color: '#9ca3af', bg: 'rgba(156,163,175,0.1)', border: 'rgba(156,163,175,0.2)' },
-  academic: { color: 'var(--accent-yellow)', bg: 'rgba(251,191,36,0.08)', border: 'rgba(251,191,36,0.2)' },
+  live:     { color: '#34D399', bg: 'rgba(16,185,129,0.08)',  border: 'rgba(16,185,129,0.22)' },
+  private:  { color: '#94A3B8', bg: 'rgba(148,163,184,0.08)', border: 'rgba(148,163,184,0.2)' },
+  academic: { color: '#C4B5FD', bg: 'rgba(196,181,253,0.08)', border: 'rgba(196,181,253,0.22)' },
 };
 
 export function OtherProjects() {
@@ -92,6 +92,8 @@ export function OtherProjects() {
                   key={proj.id}
                   className={`project-list-item ${isSelected ? 'active' : ''}`}
                   onClick={() => setSelectedProjectId(proj.id)}
+                  role="tab"
+                  aria-selected={isSelected}
                   style={{
                     '--proj-accent': proj.accentColor,
                     '--proj-bg': proj.accentBg,
@@ -177,12 +179,12 @@ export function OtherProjects() {
               {(activeProject.demoUrl || activeProject.repoUrl) && (
                 <div className="project-card__ctas">
                   {activeProject.demoUrl && (
-                    <a href={activeProject.demoUrl} target="_blank" rel="noreferrer" className="project-cta project-cta--demo" style={{ '--cta-color': activeProject.accentColor } as React.CSSProperties}>
+                    <a href={activeProject.demoUrl} target="_blank" rel="noopener noreferrer" className="project-cta project-cta--demo" style={{ '--cta-color': activeProject.accentColor } as React.CSSProperties}>
                       <ExternalLink size={14} /> {tp.viewDemo}
                     </a>
                   )}
                   {activeProject.repoUrl && (
-                    <a href={activeProject.repoUrl} target="_blank" rel="noreferrer" className="project-cta project-cta--repo">
+                    <a href={activeProject.repoUrl} target="_blank" rel="noopener noreferrer" className="project-cta project-cta--repo">
                       <FaGithub size={14} /> GitHub
                     </a>
                   )}

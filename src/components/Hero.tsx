@@ -23,9 +23,11 @@ export function Hero() {
             </div>
 
             {/* Role badge */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.5rem' }}>
-              <Terminal size={20} className="gradient-text" />
-              <span className="badge">{roleBadge}</span>
+            <div style={{ marginBottom: '1.5rem' }}>
+              <span className="badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Terminal size={15} style={{ color: 'var(--accent-secondary)' }} aria-hidden="true" />
+                <span>{roleBadge}</span>
+              </span>
             </div>
 
             {/* Heading */}
@@ -44,7 +46,7 @@ export function Hero() {
             </p>
 
             {/* CTA buttons */}
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '3.5rem' }}>
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
               <a href="#crewcontrol" className="btn btn-primary">
                 {btnPrimary} <ArrowRight size={18} />
               </a>
@@ -57,7 +59,7 @@ export function Hero() {
             <div className="hero-stats">
               {stats.map((stat, i) => (
                 <div key={i} className="hero-stat">
-                  <span className="hero-stat__value gradient-text">{stat.value}</span>
+                  <span className="hero-stat__value">{stat.value}</span>
                   <span className="hero-stat__label">{stat.label}</span>
                 </div>
               ))}

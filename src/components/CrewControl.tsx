@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { Zap, Database, LayoutTemplate, Server, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Zap, Database, LayoutTemplate, Server, ShieldCheck, ChevronLeft, ChevronRight, Lock } from 'lucide-react';
 import { useTranslation } from '../context/LanguageContext';
 
 const BASE = import.meta.env.BASE_URL;
@@ -37,15 +37,18 @@ function ImageCarousel() {
 
   return (
     <div className="carousel-wrapper">
-      {/* Mac/Browser chrome bar */}
+      {/* SaaS App Header Bar */}
       <div className="carousel-chrome">
-        <div className="carousel-chrome__dots">
-          <span style={{ background: '#FF5F57' }} />
-          <span style={{ background: '#FEBC2E' }} />
-          <span style={{ background: '#28C840' }} />
+        <div className="carousel-chrome__meta">
+          <span className="carousel-chrome__badge">{tc.chromeBadge}</span>
         </div>
         <div className="carousel-chrome__url">
-          <span className="carousel-chrome__url-text">crewcontrol.app</span>
+          <Lock size={12} style={{ color: 'var(--accent-secondary)' }} aria-hidden="true" />
+          <span className="carousel-chrome__url-text">app.crewcontrol.io/shifts/overview</span>
+        </div>
+        <div className="carousel-chrome__status">
+          <span className="carousel-chrome__status-dot" aria-hidden="true" />
+          <span>{tc.statusLive}</span>
         </div>
       </div>
 
@@ -130,16 +133,14 @@ export function CrewControl() {
         <div className="bento-grid">
           {/* Main feature box */}
           <div className="bento-card animate-fade-in-up delay-100" style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '1.5rem', overflow: 'hidden', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '200px', height: '200px', background: 'var(--accent-blue)', filter: 'blur(100px)', opacity: '0.1', pointerEvents: 'none' }} />
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', zIndex: 1 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1.25rem', zIndex: 1 }}>
               <div>
-                <h3 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', fontWeight: 700, letterSpacing: '-0.02em' }}>{tc.subtitle}</h3>
-                <p style={{ color: 'var(--text-secondary)', maxWidth: '650px', fontSize: '1.05rem', lineHeight: '1.6' }}>
+                <h3 style={{ fontSize: '1.75rem', marginBottom: '0.5rem', fontWeight: 700, letterSpacing: '-0.025em' }}>{tc.subtitle}</h3>
+                <p style={{ color: 'var(--text-secondary)', maxWidth: '680px', fontSize: '1.05rem', lineHeight: '1.65' }}>
                   {tc.description}
                 </p>
               </div>
-              <a href="#contact" className="btn btn-primary animate-pulse-glow" style={{ whiteSpace: 'nowrap' }}>
+              <a href="#contact" className="btn btn-primary" style={{ whiteSpace: 'nowrap' }}>
                 {tc.cta}
               </a>
             </div>
@@ -149,38 +150,38 @@ export function CrewControl() {
 
           {/* Stack & Architecture */}
           <div className="bento-card animate-fade-in-up delay-200" style={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <Database size={36} className="gradient-text" style={{ marginBottom: '1.25rem' }} />
-            <h3 style={{ fontSize: '1.35rem', marginBottom: '0.5rem', fontWeight: 600 }}>{tc.multiTenantTitle}</h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
+            <Database size={32} style={{ color: '#A78BFA', marginBottom: '1.25rem' }} />
+            <h3 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', fontWeight: 600 }}>{tc.multiTenantTitle}</h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.65' }}>
               {tc.multiTenantBody}
             </p>
           </div>
 
           <div className="bento-card animate-fade-in-up delay-200" style={{ gridColumn: 'span 6', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <Zap size={36} className="gradient-text" style={{ marginBottom: '1.25rem' }} />
-            <h3 style={{ fontSize: '1.35rem', marginBottom: '0.5rem', fontWeight: 600 }}>{tc.nextjsTitle}</h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: '1.6' }}>
+            <Zap size={32} style={{ color: '#818CF8', marginBottom: '1.25rem' }} />
+            <h3 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', fontWeight: 600 }}>{tc.nextjsTitle}</h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.65' }}>
               {tc.nextjsBody}
             </p>
           </div>
 
           {/* Minor cards */}
           <div className="bento-card animate-fade-in-up delay-300" style={{ gridColumn: 'span 4' }}>
-            <LayoutTemplate size={28} style={{ color: 'var(--accent-blue)', marginBottom: '1rem' }} />
-            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.1rem' }}>{tc.brandingTitle}</h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>{tc.brandingBody}</p>
+            <LayoutTemplate size={26} style={{ color: '#A78BFA', marginBottom: '1rem' }} />
+            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.05rem' }}>{tc.brandingTitle}</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.55' }}>{tc.brandingBody}</p>
           </div>
 
           <div className="bento-card animate-fade-in-up delay-300" style={{ gridColumn: 'span 4' }}>
-            <ShieldCheck size={28} style={{ color: 'var(--accent-yellow)', marginBottom: '1rem' }} />
-            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.1rem' }}>{tc.rbacTitle}</h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>{tc.rbacBody}</p>
+            <ShieldCheck size={26} style={{ color: '#818CF8', marginBottom: '1rem' }} />
+            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.05rem' }}>{tc.rbacTitle}</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.55' }}>{tc.rbacBody}</p>
           </div>
 
           <div className="bento-card animate-fade-in-up delay-300" style={{ gridColumn: 'span 4' }}>
-            <Server size={28} style={{ color: 'var(--text-primary)', marginBottom: '1rem' }} />
-            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.1rem' }}>{tc.edgeTitle}</h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>{tc.edgeBody}</p>
+            <Server size={26} style={{ color: '#C4B5FD', marginBottom: '1rem' }} />
+            <h4 style={{ fontWeight: 600, marginBottom: '0.5rem', fontSize: '1.05rem' }}>{tc.edgeTitle}</h4>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: '1.55' }}>{tc.edgeBody}</p>
           </div>
         </div>
       </div>

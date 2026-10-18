@@ -1,4 +1,4 @@
-import { useTranslation } from '../context/LanguageContext';
+import { useTranslation, useLanguage } from '../context/LanguageContext';
 import {
   SiReact, SiNextdotjs, SiTypescript, SiVite, SiCss, SiHtml5,
   SiNodedotjs, SiSupabase, SiPostgresql, SiAxios,
@@ -6,49 +6,50 @@ import {
 } from 'react-icons/si';
 import { Globe } from 'lucide-react';
 
-const skillGroups = [
-  {
-    color: 'var(--accent-blue)',
-    bg: 'rgba(124, 58, 237, 0.08)',
-    border: 'rgba(124, 58, 237, 0.2)',
-    skills: [
-      { name: 'React',        icon: <SiReact /> },
-      { name: 'Next.js',      icon: <SiNextdotjs /> },
-      { name: 'TypeScript',   icon: <SiTypescript /> },
-      { name: 'Vite',         icon: <SiVite /> },
-      { name: 'CSS / Tailwind', icon: <SiCss /> },
-      { name: 'HTML5',        icon: <SiHtml5 /> },
-    ],
-  },
-  {
-    color: '#10B981',
-    bg: 'rgba(16, 185, 129, 0.08)',
-    border: 'rgba(16, 185, 129, 0.2)',
-    skills: [
-      { name: 'Node.js',    icon: <SiNodedotjs /> },
-      { name: 'Supabase',   icon: <SiSupabase /> },
-      { name: 'PostgreSQL', icon: <SiPostgresql /> },
-      { name: 'REST APIs',  icon: <Globe size={14} /> },
-      { name: 'Auth / RBAC', icon: <SiAxios /> },
-    ],
-  },
-  {
-    color: 'var(--accent-yellow)',
-    bg: 'rgba(232, 121, 249, 0.08)',
-    border: 'rgba(232, 121, 249, 0.2)',
-    skills: [
-      { name: 'Linux Server', icon: <SiLinux /> },
-      { name: 'LAN / Redes',  icon: <Globe size={14} /> },
-      { name: 'Git',          icon: <SiGit /> },
-      { name: 'GitHub',       icon: <SiGithub /> },
-      { name: 'Vercel',       icon: <SiVercel /> },
-      { name: 'Netlify',      icon: <SiNetlify /> },
-    ],
-  },
-];
-
 export function Skills() {
   const t = useTranslation();
+  const { lang } = useLanguage();
+
+  const skillGroups = [
+    {
+      color: '#A78BFA',
+      bg: 'rgba(167, 139, 250, 0.08)',
+      border: 'rgba(167, 139, 250, 0.2)',
+      skills: [
+        { name: 'React',        icon: <SiReact /> },
+        { name: 'Next.js',      icon: <SiNextdotjs /> },
+        { name: 'TypeScript',   icon: <SiTypescript /> },
+        { name: 'Vite',         icon: <SiVite /> },
+        { name: 'CSS / Tailwind', icon: <SiCss /> },
+        { name: 'HTML5',        icon: <SiHtml5 /> },
+      ],
+    },
+    {
+      color: '#818CF8',
+      bg: 'rgba(129, 140, 248, 0.08)',
+      border: 'rgba(129, 140, 248, 0.2)',
+      skills: [
+        { name: 'Node.js',    icon: <SiNodedotjs /> },
+        { name: 'Supabase',   icon: <SiSupabase /> },
+        { name: 'PostgreSQL', icon: <SiPostgresql /> },
+        { name: 'REST APIs',  icon: <Globe size={14} /> },
+        { name: 'Auth / RBAC', icon: <SiAxios /> },
+      ],
+    },
+    {
+      color: '#C4B5FD',
+      bg: 'rgba(196, 181, 253, 0.08)',
+      border: 'rgba(196, 181, 253, 0.2)',
+      skills: [
+        { name: 'Linux Server', icon: <SiLinux /> },
+        { name: lang === 'es' ? 'Redes LAN / TI' : 'LAN / IT Networks', icon: <Globe size={14} /> },
+        { name: 'Git',          icon: <SiGit /> },
+        { name: 'GitHub',       icon: <SiGithub /> },
+        { name: 'Vercel',       icon: <SiVercel /> },
+        { name: 'Netlify',      icon: <SiNetlify /> },
+      ],
+    },
+  ];
 
   return (
     <section id="skills" className="section reveal-section">

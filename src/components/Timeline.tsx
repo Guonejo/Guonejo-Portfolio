@@ -2,9 +2,9 @@ import { Briefcase, Server, Wrench } from 'lucide-react';
 import { useTranslation } from '../context/LanguageContext';
 
 const icons = [
-  <Briefcase size={20} className="gradient-text" />,
-  <Server size={20} style={{ color: 'var(--accent-blue)' }} />,
-  <Wrench size={20} style={{ color: 'var(--text-secondary)' }} />,
+  <Briefcase size={18} style={{ color: '#A78BFA' }} />,
+  <Server size={18} style={{ color: '#818CF8' }} />,
+  <Wrench size={18} style={{ color: '#C4B5FD' }} />,
 ];
 
 export function Timeline() {

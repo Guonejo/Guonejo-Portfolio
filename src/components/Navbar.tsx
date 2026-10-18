@@ -8,10 +8,31 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [activeSection, setActiveSection] = useState<string>('');
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = ['crewcontrol', 'projects', 'about', 'timeline', 'skills', 'contact'];
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 200;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(sectionIds[i]);
+          return;
+        }
+      }
+      setActiveSection('');
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
@@ -27,13 +48,19 @@ export function Navbar() {
 
         {/* Desktop links */}
         <ul className="navbar__links">
-          {t.navbar.links.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} className="navbar__link">
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {t.navbar.links.map((link) => {
+            const isActive = link.href === `#${activeSection}`;
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={`navbar__link ${isActive ? 'navbar__link--active' : ''}`}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
@@ -68,11 +95,19 @@ export function Navbar() {
 
       {/* Mobile drawer */}
       <div id="navbar-mobile-drawer" className={`navbar__drawer ${menuOpen ? 'navbar__drawer--open' : ''}`} aria-hidden={!menuOpen}>
-        {t.navbar.links.map((link) => (
-          <a key={link.href} href={link.href} className="navbar__drawer-link" onClick={closeMenu}>
-            {link.label}
-          </a>
-        ))}
+        {t.navbar.links.map((link) => {
+          const isActive = link.href === `#${activeSection}`;
+          return (
+            <a
+              key={link.href}
+              href={link.href}
+              className={`navbar__drawer-link ${isActive ? 'navbar__drawer-link--active' : ''}`}
+              onClick={closeMenu}
+            >
+              {link.label}
+            </a>
+          );
+        })}
         {/* Language toggle in drawer */}
         <button
           className="lang-toggle"

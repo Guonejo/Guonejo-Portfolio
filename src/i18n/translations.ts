@@ -4,18 +4,18 @@ const translations = {
   es: {
     navbar: {
       links: [
-        { label: 'Sobre mí',    href: '#about' },
         { label: 'CrewControl', href: '#crewcontrol' },
         { label: 'Proyectos',   href: '#projects' },
-        { label: 'Stack',       href: '#skills' },
+        { label: 'Sobre mí',    href: '#about' },
         { label: 'Trayectoria', href: '#timeline' },
+        { label: 'Stack',       href: '#skills' },
         { label: 'Contacto',    href: '#contact' },
       ],
       cta: 'Iniciar Conversación',
     },
     hero: {
-      available:   'Disponible para nuevos desafíos profesionales',
-      roleBadge:   'Desarrollador Full-Stack & Especialista en Infraestructura TI',
+      available:   'Disponible para contratación',
+      roleBadge:   'Desarrollador Full-Stack & Especialista TI',
       titlePre:    'Ingeniería de software y',
       titleAccent: 'arquitecturas en producción.',
       titlePost:   '',
@@ -183,18 +183,18 @@ const translations = {
   en: {
     navbar: {
       links: [
-        { label: 'About',      href: '#about' },
-        { label: 'CrewControl',href: '#crewcontrol' },
+        { label: 'CrewControl', href: '#crewcontrol' },
         { label: 'Projects',   href: '#projects' },
-        { label: 'Stack',      href: '#skills' },
+        { label: 'About',      href: '#about' },
         { label: 'Experience', href: '#timeline' },
+        { label: 'Stack',      href: '#skills' },
         { label: 'Contact',    href: '#contact' },
       ],
       cta: 'Get in Touch',
     },
     hero: {
-      available:   'Available for new engineering opportunities',
-      roleBadge:   'Full-Stack Developer & IT Systems Specialist',
+      available:   'Available for hire',
+      roleBadge:   'Full-Stack Developer & IT Specialist',
       titlePre:    'Software engineering and',
       titleAccent: 'production-ready systems.',
       titlePost:   '',

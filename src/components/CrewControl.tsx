@@ -92,6 +92,12 @@ function ImageCarousel() {
           <ChevronRight size={20} />
         </button>
 
+        {/* Current slide caption badge */}
+        <div className="carousel-caption-badge">
+          <span className="carousel-caption-dot" aria-hidden="true" />
+          <span>{screenshots[current].alt}</span>
+        </div>
+
         {/* Slide counter */}
         <div className="carousel-counter">
           {current + 1} / {screenshots.length}
@@ -107,6 +113,7 @@ function ImageCarousel() {
             aria-label={tc.dotLabel(i)}
             className={`carousel-thumb ${i === current ? 'active' : ''}`}
           >
+            <span className="carousel-thumb-num">0{i + 1}</span>
             <img src={shot.src} alt={shot.alt} loading="lazy" />
           </button>
         ))}

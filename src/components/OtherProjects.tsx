@@ -60,6 +60,114 @@ const statusStyles = {
   academic: { color: '#C4B5FD', bg: 'rgba(196,181,253,0.08)', border: 'rgba(196,181,253,0.22)' },
 };
 
+function ProjectVisualPreview({ projectId, accentColor }: { projectId: string; accentColor: string }) {
+  if (projectId === 'torneoDelMillon') {
+    return (
+      <div className="project-preview-box">
+        <div className="project-preview-header">
+          <span className="project-preview-dot" style={{ background: accentColor }} />
+          <span className="project-preview-title">Bracket & Live State Engine</span>
+          <span className="project-preview-status" style={{ color: accentColor }}>Riot API Sync · Live</span>
+        </div>
+        <div className="bracket-preview-grid">
+          <div className="bracket-match">
+            <span className="bracket-team win">Team Vortex <strong style={{ color: accentColor }}>2</strong></span>
+            <span className="bracket-team">Nova eSports <span>0</span></span>
+          </div>
+          <div className="bracket-arrow" aria-hidden="true">→</div>
+          <div className="bracket-match bracket-match--active">
+            <span className="bracket-team bracket-team--active">Gran Final <span>BO5</span></span>
+            <span className="bracket-tag" style={{ background: 'rgba(168, 85, 247, 0.2)', color: accentColor }}>En vivo</span>
+          </div>
+          <div className="bracket-arrow" aria-hidden="true">←</div>
+          <div className="bracket-match">
+            <span className="bracket-team win">Solaris Gaming <strong style={{ color: accentColor }}>2</strong></span>
+            <span className="bracket-team">Quantum Club <span>1</span></span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (projectId === 'kickbot') {
+    return (
+      <div className="project-preview-box">
+        <div className="project-preview-header">
+          <span className="project-preview-dot" style={{ background: accentColor }} />
+          <span className="project-preview-title">Kick Telemetry & Webhook Pipeline</span>
+          <span className="project-preview-status" style={{ color: '#10B981' }}>● WebSocket 24ms</span>
+        </div>
+        <div className="kickbot-preview-grid">
+          <div className="telemetry-stat">
+            <span className="telemetry-label">Audience CCV</span>
+            <span className="telemetry-val" style={{ color: accentColor }}>3,480</span>
+          </div>
+          <div className="telemetry-stat">
+            <span className="telemetry-label">API Latency</span>
+            <span className="telemetry-val">18 ms</span>
+          </div>
+          <div className="telemetry-stat">
+            <span className="telemetry-label">Role Guards</span>
+            <span className="telemetry-val" style={{ color: '#34D399' }}>Active</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (projectId === 'moneyPlanner') {
+    return (
+      <div className="project-preview-box">
+        <div className="project-preview-header">
+          <span className="project-preview-dot" style={{ background: accentColor }} />
+          <span className="project-preview-title">PWA Financial Tracking & Metrics</span>
+          <span className="project-preview-status" style={{ color: accentColor }}>IndexedDB + Supabase</span>
+        </div>
+        <div className="finance-preview-grid">
+          <div className="finance-stat-card">
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
+              <span className="finance-label">Balance Mensual</span>
+              <span className="finance-num" style={{ color: accentColor, fontWeight: 700 }}>$1,450,000 CLP</span>
+            </div>
+            <div className="finance-bar">
+              <div className="finance-bar-fill" style={{ width: '68%', background: accentColor }} />
+            </div>
+          </div>
+          <div className="finance-mini-tags">
+            <span className="finance-tag">Ahorro 32%</span>
+            <span className="finance-tag">Gastos Fijos 48%</span>
+            <span className="finance-tag">Inversión 20%</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (projectId === 'despensago') {
+    return (
+      <div className="project-preview-box">
+        <div className="project-preview-header">
+          <span className="project-preview-dot" style={{ background: accentColor }} />
+          <span className="project-preview-title">Duoc UC Thesis · Mobile Vision Pipeline</span>
+          <span className="project-preview-status" style={{ color: accentColor }}>OCR & Cloud Vision</span>
+        </div>
+        <div className="vision-preview-grid">
+          <div className="vision-target-box">
+            <span className="vision-scanner-line" />
+            <div className="vision-ocr-tag">Item: Leche Entera 1L [99.2% Conf]</div>
+          </div>
+          <div className="vision-meta">
+            <span>Sync: Supabase Cloud</span>
+            <span>Mobile: Ionic Capacitor</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 export function OtherProjects() {
   const t = useTranslation();
   const tp = t.projects;
@@ -148,6 +256,9 @@ export function OtherProjects() {
 
               {/* Description */}
               <p className="project-card__description">{activeProject.description}</p>
+
+              {/* Interactive Visual Schematic Preview */}
+              <ProjectVisualPreview projectId={activeProject.id} accentColor={activeProject.accentColor} />
 
               {/* Highlights */}
               <ul className="project-card__highlights">

@@ -31,9 +31,9 @@ function ScrollProgress() {
 }
 
 /* ─── IntersectionObserver for scroll-reveal ─── */
-function useScrollReveal() {
+function useScrollReveal(deps: any[]) {
   useEffect(() => {
-    const items = document.querySelectorAll('.reveal-item');
+    const items = document.querySelectorAll('.reveal-item:not(.is-visible)');
     if (!items.length) return;
 
     const observer = new IntersectionObserver(
@@ -45,21 +45,22 @@ function useScrollReveal() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.04, rootMargin: '0px 0px -20px 0px' }
     );
 
     items.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, deps);
 }
 
 /* ─── Main content with lang-fade ─── */
 function MainContent() {
-  useScrollReveal();
   const { lang } = useLanguage();
   const t = useTranslation();
   const [visible, setVisible] = useState(true);
   const prevLang = useRef(lang);
+
+  useScrollReveal([lang, visible]);
 
   useEffect(() => {
     if (prevLang.current !== lang) {
@@ -80,11 +81,11 @@ function MainContent() {
 
       <main style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.18s ease' }}>
         <Hero />
-        <About />
-        <Skills />
         <CrewControl />
         <OtherProjects />
+        <About />
         <Timeline />
+        <Skills />
         <Contact />
       </main>
 

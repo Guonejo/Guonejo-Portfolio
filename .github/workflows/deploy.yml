@@ -4,6 +4,8 @@ on:
   # Ejecuta este workflow cada vez que hagas push a la rama principal (main o master)
   push:
     branches: ['main', 'master']
+  # Permite ejecutar este workflow manualmente desde la pestaña Actions en GitHub
+  workflow_dispatch:
 
 # Permisos necesarios para subir a GitHub Pages
 permissions:
